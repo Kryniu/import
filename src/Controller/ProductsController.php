@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/products')]
 final class ProductsController extends AbstractController
 {
-    #[Route('/import')]
+    #[Route('/import', methods: ['POST', 'GET'])]
     public function import(Request $request, ImportService $importService): Response
     {
         $form = $this->createForm(ImportType::class);
@@ -20,6 +20,8 @@ final class ProductsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $importService->addFile($form->getData());
             $this->addFlash('success','The file has been imported');
+
+            return $this->redirectToRoute('app_products_import');
         }
 
         return $this->render('products/import.html.twig', [
