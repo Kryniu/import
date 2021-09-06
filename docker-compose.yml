@@ -5,10 +5,10 @@ services:
     build:
       context: docker/database
     environment:
-      - MYSQL_DATABASE=main
-      - MYSQL_USER=main
-      - MYSQL_PASSWORD=main
-      - MYSQL_ROOT_PASSWORD=main
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
     ports:
       - "3306:3306"
     volumes:

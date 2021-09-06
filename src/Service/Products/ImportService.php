@@ -47,8 +47,15 @@ final class ImportService
     private function addProductsFromFile(string $fileRow): void
     {
         $product = $this->fileCsv->separateRowData($fileRow);
-        $productName = trim($product[0]);
-        $index = trim($product[1]);
+        $productName = trim($product[0] ?? '');
+        $index = trim($product[1] ?? '');
+        if (empty($productName) || empty($index)) {
+            $this->logger->info('Product skipped! Product index or name is empty', [
+                'name' => $productName,
+                'index' => $index,
+            ]);
+            return;
+        }
         if (!empty($this->fileProductsIndex[$index])) {
             $this->logger->info('Product skipped! Product index in file exist.', [
                 'name' => $productName,
