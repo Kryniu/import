@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome{% endblock %}</title>
+    </head>
+    <body>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    Info: {{ message }}
+                </div>
+                <br/>
+            {% endfor %}
+        {% endfor %}
+        {% block body %}{% endblock %}
+    </body>
+</html>
