@@ -1,4 +1,4 @@
-# macopedia
+# import products
 
 W celu uruchomienia aplikacji należy zbudować kontener dokera oraz skonfigurować połączenie do bazy w pliku .env
 
